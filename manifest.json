@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "tc-analyzer",
+  "version": "1.0",
+
+  "description": "Analyze time complexity and space complexity for leetcode in great depth.",
+
+  "icons": {
+    "48": "icons/border-48.png"
+  },
+
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "tc-analyzer@mozilla.org",
+      "data_collection_permissions": {
+        "required": ["none"]
+      }
+    }
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["*://*.leetcode.com/*"],
+      "js": ["content.js"]
+    }
+  ]
+}
