@@ -1,27 +1,26 @@
 {
   "manifest_version": 3,
-  "name": "tc-analyzer",
+  "name": "LeetCode Mistral Complexity Analyzer",
   "version": "1.0",
-
-  "description": "Analyze time complexity and space complexity for leetcode in great depth.",
-
-  "icons": {
-    "48": "icons/border-48.png"
+  "description": "Extracts problem context and code to analyze complexity via a custom Mistral Agent.",
+  "permissions": ["activeTab", "storage"],
+  "background": {
+    "scripts": ["background.js"]
   },
-
-  "browser_specific_settings": {
-    "gecko": {
-      "id": "tc-analyzer@mozilla.org",
-      "data_collection_permissions": {
-        "required": ["none"]
-      }
-    }
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
   },
-
   "content_scripts": [
     {
-      "matches": ["*://*.leetcode.com/*"],
+      "matches": ["https://leetcode.com/problems/*"],
       "js": ["content.js"]
     }
-  ]
+  ],
+  "host_permissions": ["https://api.mistral.ai/*"],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "leetcode-mistral-analyzer@yourlocaldev.com"
+    }
+  }
 }
