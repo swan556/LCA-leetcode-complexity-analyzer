@@ -65,42 +65,37 @@ let lastPromptString = "";
   }
 
   btn.onclick = async () => {
-    // console.log("Extracting data from LeetCode...");
+    const result = await browser.storage.local.get("mistralApiKey");
+
+    if (!result.mistralApiKey) {
+      browser.runtime.sendMessage({
+        action: "openSettings",
+      });
+      return;
+    }
 
     const { code, problemText, constraintText } = extractLeetCodeData();
 
     if (!code || code.trim().length < 3) {
-      // console.log("Could not read code. Ensure the editor is visible.");
       return;
     }
 
-    // Creating the EXACT JSON structure you requested
     const llmInputPayload = {
-      problemText: problemText,
-      constraintText: constraintText,
-      code: code,
+      problemText,
+      constraintText,
+      code,
     };
 
-    // We stringify it because the LLM expects a single string prompt in the 'content' field
     const promptString = JSON.stringify(llmInputPayload, null, 2);
 
-    // console.log("Sending to Mistral Agent...");
     lastPromptString = promptString;
+
     chrome.runtime.sendMessage(
       { action: "analyze", prompt: promptString },
       (resp) => {
-        if (chrome.runtime.lastError) {
-          // console.log("Extension Error: " + chrome.runtime.lastError.message);
-          return;
-        }
-        if (!resp) {
-          // console.log("No response from background script.");
-          return;
-        }
-        if (resp.error) {
-          // console.log("API Error: " + resp.error);
-          return;
-        }
+        if (chrome.runtime.lastError) return;
+        if (!resp) return;
+        if (resp.error) return;
 
         try {
           const cleanJson = resp.result
@@ -109,8 +104,6 @@ let lastPromptString = "";
             .trim();
 
           const analysis = JSON.parse(cleanJson);
-
-          // console.log("Parsed analysis:", analysis);
 
           renderAnalysis(analysis);
         } catch (err) {
@@ -122,6 +115,31 @@ let lastPromptString = "";
   createAnalysisWindow();
   document.body.appendChild(btn);
 })();
+
+async function runAnalysis() {
+  const { code, problemText, constraintText } = extractLeetCodeData();
+
+  if (!code || code.trim().length < 3) {
+    return;
+  }
+
+  const llmInputPayload = {
+    problemText,
+    constraintText,
+    code,
+  };
+
+  const promptString = JSON.stringify(llmInputPayload, null, 2);
+
+  lastPromptString = promptString;
+
+  chrome.runtime.sendMessage(
+    { action: "analyze", prompt: promptString },
+    (resp) => {
+      // existing response handling code
+    },
+  );
+}
 
 function createAnalysisWindow() {
   analysisWindow = document.createElement("div");

@@ -21,6 +21,35 @@ All results are displayed in an interactive analysis panel inside LeetCode.
 
 ---
 
+## Quick Start
+
+# 1. Install the extension in Firefox.
+
+# 2. Open any LeetCode problem page.
+
+# 3. Open the extension settings page and enter your Mistral API key.
+
+# 4. Save the API key.
+
+# 5. Write or paste your solution into the LeetCode editor.
+
+# 6. Click the **Analyze** button that appears on the page.
+
+# 7. Wait a few seconds while the AI reviews your solution.
+
+# 8. View the generated report, including:
+
+- Time Complexity
+- Space Complexity
+- Optimality Analysis
+- TLE Risk Assessment
+- Cost Breakdown
+- Optimization Suggestions
+
+# 9. Modify your solution and click **Reanalyze** whenever you want updated feedback.
+
+---
+
 ## Features
 
 ### Complexity Analysis
@@ -81,15 +110,17 @@ The key is stored locally using the browser storage API and is never hardcoded i
 
 ### Analysis Dashboard
 
-![Analysis Dashboard]
-(screenshots/3.png)
-(screenshots/2.png)
-(screenshots/1.png)
+<h2>Screenshots</h2>
 
-### Settings Page
+<p align="center">
+  <img src="screenshots/1.png" width="30%">
+  <img src="screenshots/2.png" width="30%">
+  <img src="screenshots/3.png" width="30%">
+</p>
 
-![Settings](screenshots/settings.png)
-
+<p align="center">
+  <img src="screenshots/settings.png" width="70%">
+</p>
 ---
 
 ## Installation
