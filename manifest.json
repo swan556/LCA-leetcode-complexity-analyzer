@@ -18,7 +18,7 @@
   "content_scripts": [
     {
       "matches": ["https://leetcode.com/problems/*"],
-      "js": ["content.js"]
+      "js": ["libs/purify.min.js", "content.js"]
     }
   ],
 

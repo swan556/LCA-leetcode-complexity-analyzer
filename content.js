@@ -506,15 +506,15 @@ function createSpeedupText(a) {
 function renderAnalysis(a) {
   analysisWindow.style.display = "flex";
 
-  const verdictText = a.approach_evaluation.is_optimal
+  const verdictText = safe.approach_evaluation.is_optimal
     ? "Optimal"
     : "Not Optimal";
 
-  const verdictColor = getVerdictColor(a.approach_evaluation.is_optimal);
+  const verdictColor = getVerdictColor(safe.approach_evaluation.is_optimal);
 
-  const tleColor = getTleColor(a.worst_case_execution_estimate.will_it_tle);
+  const tleColor = getTleColor(safe.worst_case_execution_estimate.will_it_tle);
 
-  analysisContent.innerHTML = `
+  const analysisContentHtml = `
     <div style="
       display:grid;
       grid-template-columns:1fr 1fr;
@@ -532,7 +532,7 @@ function renderAnalysis(a) {
           Time Complexity
         </div>
         <div style="font-size:22px;font-weight:bold;color:#eff1f6;font-family:monospace;">
-          ${a.asymptotic_complexity.time_complexity_big_o}
+          ${safe.asymptotic_complexity.time_complexity_big_o}
         </div>
       </div>
 
@@ -546,7 +546,7 @@ function renderAnalysis(a) {
           Space Complexity
         </div>
         <div style="font-size:22px;font-weight:bold;color:#eff1f6;font-family:monospace;">
-          ${a.asymptotic_complexity.space_complexity_big_o}
+          ${safe.asymptotic_complexity.space_complexity_big_o}
         </div>
       </div>
 
@@ -582,11 +582,11 @@ function renderAnalysis(a) {
           font-weight:600;
           color:${tleColor};
         ">
-          ${a.worst_case_execution_estimate.will_it_tle}
+          ${safe.worst_case_execution_estimate.will_it_tle}
         </div>
       </div>
     </div>
-  ${createComparisonCard(a)}
+  ${createComparisonCard(safe)}
 
     <div style="
       background:#333333;
@@ -600,7 +600,7 @@ function renderAnalysis(a) {
         Pro Tip
       </div>
       <div style="font-size:15px;color:#eff1f6;line-height:1.5;">
-        ${a.approach_evaluation.optimal_method_recommended}
+        ${safe.approach_evaluation.optimal_method_recommended}
       </div>
     </div>
 
@@ -609,11 +609,11 @@ function renderAnalysis(a) {
       <div class="lc-details-content">
         <div style="margin-bottom:8px;">
           <strong style="color:#eff1f6;">Variables:</strong>
-          <span style="font-family:monospace; color:#ffa116;">${a.problem_constraints_extracted.variables.join(", ")}</span>
+          <span style="font-family:monospace; color:#ffa116;">${safe.problem_constraints_extracted.variables.join(", ")}</span>
         </div>
         <div>
           <strong style="color:#eff1f6;">Maximum Bounds:</strong>
-          <span style="font-family:monospace; color:#ffa116;">${a.problem_constraints_extracted.max_bounds.join(", ")}</span>
+          <span style="font-family:monospace; color:#ffa116;">${safe.problem_constraints_extracted.max_bounds.join(", ")}</span>
         </div>
       </div>
     </details>
@@ -621,7 +621,7 @@ function renderAnalysis(a) {
     <details class="lc-details-box">
       <summary>Line-by-line breakdown</summary>
       <div class="lc-details-content" style="padding:0;">
-        ${createCostAuditTable(a.block_by_block_cost_audit)}
+        ${createCostAuditTable(safe.block_by_block_cost_audit)}
       </div>
     </details>
 </div>
@@ -631,17 +631,17 @@ function renderAnalysis(a) {
       <div class="lc-details-content">
         <p style="margin-bottom:4px;"><strong style="color:#eff1f6;">Exact Time Formula</strong></p>
         <code style="display:block; padding:8px; background:#1e1e1e; border-radius:6px; margin-bottom:12px; color:#ffa116;">
-          ${a.exact_performance_formulas.exact_time_formula}
+          ${safe.exact_performance_formulas.exact_time_formula}
         </code>
 
         <p style="margin-bottom:4px;"><strong style="color:#eff1f6;">Exact Space Formula</strong></p>
         <code style="display:block; padding:8px; background:#1e1e1e; border-radius:6px; margin-bottom:12px; color:#ffa116;">
-          ${a.exact_performance_formulas.exact_space_formula}
+          ${safe.exact_performance_formulas.exact_space_formula}
         </code>
 
         <p style="margin-bottom:4px;"><strong style="color:#eff1f6;">Maximum Operations Estimate</strong></p>
         <code style="display:block; padding:8px; background:#1e1e1e; border-radius:6px; color:#ffa116;">
-          ${a.worst_case_execution_estimate.max_calculated_operations}
+          ${safe.worst_case_execution_estimate.max_calculated_operations}
         </code>
       </div>
     </details>
@@ -649,11 +649,12 @@ function renderAnalysis(a) {
     <details class="lc-details-box">
       <summary>Tips to make it better</summary>
       <div class="lc-details-content" style="white-space: pre-line;">
-        ${a.detailed_optimization_feedback}
+        ${safe.detailed_optimization_feedback}
       </div>
     </details>
   `;
 
+  analysisContent.innerHTML = DOMPurify.sanitize(analysisContentHtml);
   // Replaced unicode characters with clean SVG icons in the buttons
   footerBar.innerHTML = `
   <button id="copy-analysis-btn" class="lc-action-btn">
@@ -714,11 +715,11 @@ function renderAnalysis(a) {
 
   document.getElementById("copy-analysis-btn").onclick = () => {
     const summary = `
-Time Complexity: ${a.asymptotic_complexity.time_complexity_big_o}
-Space Complexity: ${a.asymptotic_complexity.space_complexity_big_o}
+Time Complexity: ${safe.asymptotic_complexity.time_complexity_big_o}
+Space Complexity: ${safe.asymptotic_complexity.space_complexity_big_o}
 Verdict: ${verdictText}
-Recommended: ${a.approach_evaluation.optimal_method_recommended}
-TLE Risk: ${a.worst_case_execution_estimate.will_it_tle}
+Recommended: ${safe.approach_evaluation.optimal_method_recommended}
+TLE Risk: ${safe.worst_case_execution_estimate.will_it_tle}
 `;
 
     navigator.clipboard.writeText(summary);
