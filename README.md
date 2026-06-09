@@ -113,9 +113,9 @@ The key is stored locally using the browser storage API and is never hardcoded i
 <h2>Screenshots</h2>
 
 <p align="center">
-  <img src="screenshots/1.png" width="30%">
-  <img src="screenshots/2.png" width="30%">
-  <img src="screenshots/3.png" width="30%">
+  <img src="screenshots/img1.png" width="30%">
+  <img src="screenshots/img2.png" width="30%">
+  <img src="screenshots/img3.png" width="30%">
 </p>
 
 <p align="center">
