@@ -23,21 +23,51 @@ All results are displayed in an interactive analysis panel inside LeetCode.
 
 ## Quick Start
 
-# 1. Install the extension in Firefox.
+### 1. Install the extension in Firefox.
 
-# 2. Open any LeetCode problem page.
+- Search "Free LeetCode TC analyzer" (might not be available currently as its still in reviewing stage)
+- click on the first icon, and install it. (I'll also attach the direct link after it publishes)
 
-# 3. Open the extension settings page and enter your Mistral API key.
+### 2. Open any LeetCode problem page.
 
-# 4. Save the API key.
+### 3.5 Get your mistral api key
 
-# 5. Write or paste your solution into the LeetCode editor.
+- go to https://mistral.ai/ and sign in
+- go to https://console.mistral.ai/home to get your api key
+- click on the 'Api Keys' section on the left side vertical bar
+<p align="center">
+  <img src="screenshots/installation-steps/1.png" width="80%">
+</p>
+- Click on 'Add New API key'
+<p align="center">
+  <img src="screenshots/installation-steps/2.png" width="80%">
+</p>
 
-# 6. Click the **Analyze** button that appears on the page.
+<p align="center">
+  <img src="screenshots/installation-steps/3.png" width="80%">
+</p>
+- copy your api key
 
-# 7. Wait a few seconds while the AI reviews your solution.
+### 4. Save the API key.
 
-# 8. View the generated report, including:
+- After opening any leetcode question, you will see an purple 'Analyze' button on top right.
+<p align="center">
+  <img src="screenshots/installation-steps/0.png" width="80%">
+</p>
+- clicking on that button will open settings page
+- you can paste your api key at the bottom there
+  <p align="center">
+  <img src="screenshots/installation-steps/4.png" width="80%">
+</p>
+- click on save button and you are good to go
+
+### 5. Write or paste your solution into the LeetCode editor.
+
+### 6. Click the **Analyze** button that appears on the page.
+
+### 7. Wait a few seconds while the AI reviews your solution.
+
+### 8. View the generated report, including:
 
 - Time Complexity
 - Space Complexity
@@ -46,7 +76,7 @@ All results are displayed in an interactive analysis panel inside LeetCode.
 - Cost Breakdown
 - Optimization Suggestions
 
-# 9. Modify your solution and click **Reanalyze** whenever you want updated feedback.
+### 9. Modify your solution and click **Reanalyze** whenever you want updated feedback.
 
 ---
 
@@ -111,15 +141,17 @@ The key is stored locally using the browser storage API and is never hardcoded i
 ### Analysis Dashboard
 
 <h2>Screenshots</h2>
-
-<p align="center">
-  <img src="screenshots/img1.png" width="30%">
-  <img src="screenshots/img2.png" width="30%">
-  <img src="screenshots/img3.png" width="30%">
+  <p align="center">
+  <img src="screenshots/img0.png" width="80%">
 </p>
 
-<p align="center">
-  <img src="screenshots/settings.png" width="70%">
+  <p align="center">
+  <img src="screenshots/img1.png" width="80%">
+</p>
+
+
+  <p align="center">
+  <img src="screenshots/img2.png" width="80%">
 </p>
 ---
 
